@@ -24,50 +24,23 @@ public class SubjectServiceImpl implements SubjectService{
 	@Override
 	public List<Subject> getAllSubjectOfStudent(int studentId) 
 	{
-		try 
-		{
-			Student student = studentrepo.findById(studentId).get();
-			List<Subject> list = student.getSubject();
-			System.out.println("List Of Subjects : "+list);
-			return list;
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			return null;
+		
+	  Student saved_student=this.studentrepo.findById(studentId).orElseThrow();
+	  if(saved_student==null) {
+		  return null;
+	  }
+	       List<Subject> list= this.subjectrepo.getAll(studentId);
+	       return list;
 		}
-	}
-
 	@Override
-	public String deleteSubject(int studId, int subId)
+	public String deleteSubject( int subId)
 	{
 		try 
 		{
-			Student student = studentrepo.findById(studId).get();
-			List<Subject> list = student.getSubject();
-			int count=0;
-			for (Subject sub : list) 
-			{
-				if(sub.getId()==subId)
-				{
-					list.remove(sub);
-					count++;
-					break;
-				}
-			}
-			if(count!=0)
-			{
-				studentrepo.save(student);
-				subjectrepo.deleteById(subId);
-				System.out.println("Subject Deleted Successfully");
-				return "Subject Deleted Successfully";
-			}
-			else
-			{
-				System.out.println("Subject Not Deleted");
-				return "Subject Not Deleted";
-			}
+		subjectrepo.deleteById(subId);
+		return "Successfully Deleted";
 		} 
+		
 		catch (Exception e) 
 		{
 			e.getMessage();

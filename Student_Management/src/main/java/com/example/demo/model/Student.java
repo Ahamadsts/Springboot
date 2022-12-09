@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,8 +21,8 @@ public class Student {
 	private String lastName;
 	private String address;
 	private String email;
-	private String standard;
-	@OneToMany (cascade = CascadeType.ALL)
+	private long phone_no;
+	@OneToMany (mappedBy = "student",cascade = CascadeType.ALL)
 	List<Subject>subject;
 	public int getId() {
 		return id;
@@ -52,11 +54,11 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getStandard() {
-		return standard;
+	public long getphone_no() {
+		return phone_no;
 	}
-	public void setStandard(String standard) {
-		this.standard = standard;
+	public void setphone_no(long phone_no) {
+		this.phone_no = phone_no;
 	}
 	public List<Subject> getSubject() {
 		return subject;
@@ -67,9 +69,9 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
-				+ ", email=" + email + ", standard=" + standard + ", subject=" + subject + "]";
+				+ ", email=" + email + ", phone_no=" + phone_no + ", subject=" + subject + "]";
 	}
-	public Student(int id, String firstName, String lastName, String address, String email, String standard,
+	public Student(int id, String firstName, String lastName, String address, String email, long phone_no,
 			List<Subject> subject) {
 		super();
 		this.id = id;
@@ -77,7 +79,7 @@ public class Student {
 		this.lastName = lastName;
 		this.address = address;
 		this.email = email;
-		this.standard = standard;
+		this.phone_no = phone_no;
 		this.subject = subject;
 	}
 	public Student() {
