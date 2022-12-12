@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,34 +11,14 @@ public class Student {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable = false,unique = true)
 	private String name;
-	@Column(unique = true,nullable = false)
 	private String email;
-	@Column(unique = true, nullable = false)
-	private String password;
 	private String phone_no;
-	
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public Student(int id, String name, String email, String password, String phone_no) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.phone_no = phone_no;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -61,13 +40,20 @@ public class Student {
 	}
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", phone_no="
-				+ phone_no + "]";
+		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", phone_no=" + phone_no + "]";
 	}
-	
+	public Student(int id, String name, String email, String phone_no) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.phone_no = phone_no;
+	}
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
 
 }

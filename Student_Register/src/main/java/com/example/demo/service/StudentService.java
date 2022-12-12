@@ -7,7 +7,7 @@ import com.example.demo.model.Student;
 public interface StudentService  {
 	
 	
-	public String registerStudent(Student student);
+	public Student registerStudent(Student student);
 	
 	public Student updateStudent(Student student);
 
@@ -15,10 +15,7 @@ public interface StudentService  {
 
 	public List<Student> getAllStudent();
 	
-	public Student getbyname(String name);// this method used native Query
 	
-	
-	public String getPassword(String name);
-	
-	
+
+
 }
