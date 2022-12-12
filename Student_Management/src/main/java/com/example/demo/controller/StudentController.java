@@ -16,13 +16,11 @@ import com.example.demo.serviceImpl.StudentServiceImpl;
 import com.example.demo.serviceImpl.SubjectServiceImpl;
 
 @RestController
-public class Controller {
+public class StudentController {
 	
 	@Autowired
 	StudentServiceImpl studserviceimpl;
 	
-	@Autowired
-	SubjectServiceImpl subserviceimpl;
 	
 	
 	@RequestMapping("saveStudent")
@@ -43,21 +41,9 @@ public class Controller {
 
 	}
 	
-	@RequestMapping("getAllSubject")
-	public ResponseEntity<?> getAllSubjectOfStudent(@RequestParam("studentId") int studentId)
-	{
-		
-	List<Subject>	list=  subserviceimpl.getAllSubjectOfStudent(studentId);
-		  return new ResponseEntity<>(list,HttpStatus.OK);
-	}
 	
-	@RequestMapping("deleteSubject")
-	public ResponseEntity<?> deleteSubject(@RequestParam int subId)
-	{
-		 String deleteSubject = subserviceimpl.deleteSubject(subId);
-		 return new ResponseEntity<>(deleteSubject,HttpStatus.OK);
-		
-	}
+	
+	
 	
 	@RequestMapping("updateStudent")
 	public ResponseEntity<?> upadtestudent(@RequestBody Student student)

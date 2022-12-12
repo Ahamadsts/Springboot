@@ -53,7 +53,6 @@ public class StudentServiceImpl implements StudentService
 	@Override
 	public String deleteStudent(int studentid) 
 	{
-		
 		try 
 		{
 			studentrepo.deleteById(studentid);
@@ -63,7 +62,7 @@ public class StudentServiceImpl implements StudentService
 		catch (Exception e) 
 		{
 			e.printStackTrace();
-			return null;
+			return "Student Not Deleted";
 		}
 	}
 	
@@ -86,7 +85,7 @@ public class StudentServiceImpl implements StudentService
 		catch (Exception e) 
 		{
 			e.getMessage();
-			return null;
+			return "Student Not Updated Something Went Wrong";
 		}
 	}
 }

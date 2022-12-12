@@ -24,14 +24,22 @@ public class SubjectServiceImpl implements SubjectService{
 	@Override
 	public List<Subject> getAllSubjectOfStudent(int studentId) 
 	{
-		
-	  Student saved_student=this.studentrepo.findById(studentId).orElseThrow();
-	  if(saved_student==null) {
-		  return null;
-	  }
-	       List<Subject> list= this.subjectrepo.getAll(studentId);
-	       return list;
+		try
+		{
+			  Student saved_student=this.studentrepo.findById(studentId).orElseThrow();
+			  if(saved_student==null) {
+				  return null;
+			  }
+			       List<Subject> list= this.subjectrepo.getAll(studentId);
+			       return list;
 		}
+		catch (Exception e)
+		{
+			e.getMessage();
+			return null;
+		}
+	
+	}
 	@Override
 	public String deleteSubject( int subId)
 	{
@@ -44,6 +52,23 @@ public class SubjectServiceImpl implements SubjectService{
 		catch (Exception e) 
 		{
 			e.getMessage();
+			return "Something Went Wrong";
+		}
+	}
+	@Override
+	public String updateSubject(Subject subject) 
+	{
+		try
+		{
+		Subject sub = this.subjectrepo.findById(subject.getId()).get();
+		sub.setName(subject.getName());
+		sub.setStudent(subject.getStudent());
+		this.subjectrepo.save(sub);
+		return "Subject Updates Successfully";
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
 			return "Something Went Wrong";
 		}
 	}

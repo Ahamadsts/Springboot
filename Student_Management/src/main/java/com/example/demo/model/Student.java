@@ -2,9 +2,9 @@ package com.example.demo.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,10 +17,14 @@ public class Student {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false)
 	private String firstName;
+	@Column(unique = true)
 	private String lastName;
 	private String address;
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private long phone_no;
 	@OneToMany (mappedBy = "student",cascade = CascadeType.ALL)
 	List<Subject>subject;
